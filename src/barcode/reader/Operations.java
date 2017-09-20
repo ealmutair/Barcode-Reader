@@ -96,10 +96,11 @@ public class Operations {
     // for delete Event after clicking delete Event
     public void deleteEvent(int id) throws SQLException {
         PreparedStatement pre;
-        String query = "DELETE FROME Barcode.Event where eventId =?";
+        String query = "Delete from Barcode.Event where eventId ='"+id+"'";//+id+"'";
+        System.out.print("I am here one");
         dbOperation.connect();//connect to database  
         pre = dbOperation.prepareStatement(query);
-
+        System.out.print("I am here two");
         pre.execute();
         pre.close();
 
@@ -141,13 +142,14 @@ public class Operations {
 // This method to get all date about an event and and show them in Management.java
 
     public ArrayList<User> showSelectedEventAttendence(String temp, int selectedId) {
-
+        
         PreparedStatement pre;
         ArrayList<User> users = new ArrayList<User>();
        //insert into the table before you get date in the dialog
         //String query1 ="INSERT into eventUser (eventId,userId)values("+"'"+temp+"'"+","+"'"+selectedId+"'"+")";
         //String query = "SELECT * FROM Barcode.view1 id,userName,userType,college WHERE id="+selectedId;
-        String query ="select id,userName,college,department,userType from Barcode.view1 ";
+        //String query ="select id,userName,college,department,userType from Barcode.view1 wher id="+ selectedId +"and eventname ="+"'"+ temp+"'"+" ;";
+        String query="select * from  Barcode.view1 where id="+selectedId+" and eventName='"+temp+"'";
         try {
 
             dbOperation.connect();//connect to database
@@ -159,7 +161,7 @@ public class Operations {
             rs = pre.executeQuery(query);
             
             while (rs.next()) {
-                            int id = rs.getInt("id");
+            int id = rs.getInt("id");
             String name = rs.getString("userName");
             String college = rs.getString("college");
             String department = rs.getString("department");
@@ -167,7 +169,7 @@ public class Operations {
             User user = new User(id, name, college, department,type);
             users.add(user);
             }
-
+            System.out.print("selected eventAttendence");
         } catch (SQLException ex) {
             Logger.getLogger(Operations.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -220,16 +222,64 @@ public class Operations {
         return null;
     }
 
-    void selectAllProfessor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    /*need to check this return value is it correct to have int as return or 
+    do we make it as array list becasue we might have more events have same name*/
+    //this method to get the id of the selected event in the management.java
+   public int getEventId(String temp) throws SQLException {
+    
+    PreparedStatement pre;
+        String query = "SELECT eventId from Barcode.Event where name ='"+temp+"'";
+        dbOperation.connect();//connect to database  
+        pre = dbOperation.prepareStatement(query);
+       int id = 0;
 
-    void selectAllStaff() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ResultSet rs=pre.executeQuery();
+        while(rs.next()){
+            id=rs.getInt("eventId");
+        }
+        pre.close();
+       return id; 
     }
+   //this method to add new attendent to table eventUser before showing them in the GUI
+   public void insertSelectedUserToEvent(int eventId,int userId) throws SQLException{
+       
+       PreparedStatement pre;
+        String query = "INSERT INTO Barcode.eventUser VALUES(?,?)";
+        dbOperation.connect();//connect to database  
+        pre = dbOperation.prepareStatement(query);
+        pre.setInt(1, eventId);
+        pre.setInt(2, userId);
 
-    void selectAllGuest() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       pre.executeQuery();
+       
+        pre.close();
+        System.out.print("insert");
+   }
+   //this method to show all people marked present in case someone close the program before mark event done
+    ArrayList<User> showPresentUser(int eventId) throws SQLException {
+      PreparedStatement pre;
+        //Event event= new Event();
+        ArrayList<User> users = new ArrayList<User>();
+        String query="select * from  Barcode.view1 where  eventId='"+eventId+"'";
+        dbOperation.connect();//connect to database       
+        pre = dbOperation.prepareStatement(query);// query that will be executed
+        
+        ResultSet rs = pre.executeQuery(query);//get the result from database as an object
+        
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String name = rs.getString("userName");
+            String college = rs.getString("college");
+            String department = rs.getString("department");
+            String type = rs.getString("userType");
+            
+            
+            User user = new User(id, name, type, college,department);
+            users.add(user);
+
+        }
+
+        return users;  
     }
 
 }

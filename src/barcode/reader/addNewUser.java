@@ -208,6 +208,7 @@ public class addNewUser extends javax.swing.JFrame {
         name.setText("");
         college.setText("");
         id.setText("");
+        dispose();
         
     }//GEN-LAST:event_clearActionPerformed
 

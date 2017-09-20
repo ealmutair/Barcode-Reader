@@ -46,11 +46,12 @@ public class StatOperations {
         
         PreparedStatement pre;
         ArrayList<User> students = new ArrayList<User>();
-        String query = "SELECT * from Barcode.User where type='doctor'";
+        String query = "SELECT * from Barcode.User where type=?";
         
         dbOperation.connect();//connect to database       
-        pre = dbOperation.prepareStatement(query);// query that will be executed        
-        ResultSet rs  = pre.executeQuery(query);//get the result from database as an object
+        pre = dbOperation.prepareStatement(query);// query that will be executed 
+        pre.setString(1, "doctor");
+        ResultSet rs  = pre.executeQuery();//get the result from database as an object
          
         while (rs.next()) {//read data from database and safe them in array of objects
             int id = rs.getInt("id");
@@ -70,11 +71,12 @@ public class StatOperations {
         PreparedStatement pre;
         ArrayList<User> students = new ArrayList<User>();
         //this is from view not from table
-        String query = "SELECT id,userName,college,department,userType from Barcode.view1 where eventName="+"'"+event+"'"+" and userType='doctor'";
+        String query = "SELECT id,userName,college,department,userType from Barcode.view1 where eventName=? and userType='doctor'";
         
         dbOperation.connect();//connect to database       
-        pre = dbOperation.prepareStatement(query);// query that will be executed        
-        ResultSet rs  = pre.executeQuery(query);//get the result from database as an object
+        pre = dbOperation.prepareStatement(query);// query that will be executed 
+        pre.setString(1, event);
+        ResultSet rs  = pre.executeQuery();//get the result from database as an object
          
         while (rs.next()) {//read data from database and safe them in array of objects
             int id = rs.getInt("id");
@@ -94,11 +96,12 @@ public class StatOperations {
     
         PreparedStatement pre;
         ArrayList<User> staffs = new ArrayList<User>();
-        String query = "SELECT * from Barcode.User where type='staff'";
+        String query = "SELECT * from Barcode.User where type=?";
         
         dbOperation.connect();//connect to database       
-        pre = dbOperation.prepareStatement(query);// query that will be executed        
-        ResultSet rs  = pre.executeQuery(query);//get the result from database as an object
+        pre = dbOperation.prepareStatement(query);// query that will be executed 
+        pre.setString(1, "staff");
+        ResultSet rs  = pre.executeQuery();//get the result from database as an object
          
         while (rs.next()) {//read data from database and safe them in array of objects
             int id = rs.getInt("id");
@@ -118,12 +121,12 @@ public class StatOperations {
         PreparedStatement pre;
         ArrayList<User> staffs = new ArrayList<User>();
         //this is from view not from table
-        String query = "SELECT id,userName,college,department,userType from Barcode.view1 where userType='staff'and eventName="+"'"+event+"'";
+        String query = "SELECT id,userName,college,department,userType from Barcode.view1 where userType='staff'and eventName=?";
         
         dbOperation.connect();//connect to database       
         pre = dbOperation.prepareStatement(query);// query that will be executed     
-        
-        ResultSet rs  = pre.executeQuery(query);//get the result from database as an object
+        pre.setString(1, event);
+        ResultSet rs  = pre.executeQuery();//get the result from database as an object
          
         while (rs.next()) {//read data from database and safe them in array of objects
              int id = rs.getInt("id");
@@ -148,7 +151,7 @@ public class StatOperations {
         dbOperation.connect();//connect to database       
         pre = dbOperation.prepareStatement(query);// query that will be executed
 
-        ResultSet rs  = pre.executeQuery(query);//get the result from database as an object
+        ResultSet rs  = pre.executeQuery();//get the result from database as an object
          while (rs.next()) {
             int id = rs.getInt("id");
             String name = rs.getString("name");
@@ -190,11 +193,12 @@ public class StatOperations {
         PreparedStatement pre;
         ArrayList<User> students = new ArrayList<User>();
         System.out.println(event);
-        String query = "SELECT id,userName,college,department,userType from Barcode.view1 where eventName="+"'"+event+"'"+" and userType='student'";
+        String query = "SELECT id,userName,college,department,userType from Barcode.view1 where eventName=? and userType='student'";
         
         dbOperation.connect();//connect to database       
-        pre = dbOperation.prepareStatement(query);// query that will be executed        
-        ResultSet rs  = pre.executeQuery(query);//get the result from database as an object
+        pre = dbOperation.prepareStatement(query);// query that will be executed  
+        pre.setString(1, event);
+        ResultSet rs  = pre.executeQuery();//get the result from database as an object
          
         while (rs.next()) {//read data from database and safe them in array of objects
             int id = rs.getInt("id");
@@ -219,7 +223,7 @@ public class StatOperations {
         
         dbOperation.connect();//connect to database       
         pre = dbOperation.prepareStatement(query);// query that will be executed        
-        ResultSet rs  = pre.executeQuery(query);//get the result from database as an object
+        ResultSet rs  = pre.executeQuery();//get the result from database as an object
          
         while (rs.next()) {//read data from database and safe them in array of objects
             int id = rs.getInt("id");
@@ -239,11 +243,12 @@ public class StatOperations {
   
         PreparedStatement pre;
         ArrayList<User> guests = new ArrayList<User>();
-        String query = "SELECT id,userName,college,department,userType from Barcode.view1 where eventName="+"'"+event+"'"+" and userType='guest'";
+        String query = "SELECT id,userName,college,department,userType from Barcode.view1 where eventName=? and userType='guest'";
         
         dbOperation.connect();//connect to database       
-        pre = dbOperation.prepareStatement(query);// query that will be executed        
-        ResultSet rs  = pre.executeQuery(query);//get the result from database as an object
+        pre = dbOperation.prepareStatement(query);// query that will be executed
+        pre.setString(1, event);
+        ResultSet rs  = pre.executeQuery();//get the result from database as an object
          
         while (rs.next()) {//read data from database and safe them in array of objects
             int id = rs.getInt("id");

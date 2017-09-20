@@ -39,19 +39,22 @@ public class Statestics extends javax.swing.JFrame {
         value = new javax.swing.JTextField();
         total = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        chooseEvent = new javax.swing.JButton();
-        ChosenEvent = new javax.swing.JTextField();
-        Choose = new javax.swing.JButton();
-        ComboChoose = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
         ComboShow = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         selectedField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jComboBoxEvents = new javax.swing.JComboBox();
+        ComboChoose = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        search = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         jLabel5.setText("jLabel5");
 
@@ -83,46 +86,7 @@ public class Statestics extends javax.swing.JFrame {
 
         jLabel4.setText("المجموع الكلي لـ");
 
-        jLabel2.setText("للعرض المخصص");
-
-        chooseEvent.setText("اختر النشاط");
-        chooseEvent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chooseEventActionPerformed(evt);
-            }
-        });
-
-        ChosenEvent.setBackground(new java.awt.Color(204, 204, 204));
-        ChosenEvent.setText("تلقائي");
-        ChosenEvent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChosenEventActionPerformed(evt);
-            }
-        });
-
-        Choose.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 12)); // NOI18N
-        Choose.setText("عرض");
-        Choose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChooseActionPerformed(evt);
-            }
-        });
-
-        ComboChoose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "جميع أعضاء هيئة التدريس", "جميع موظفي الكلية", "جميع الطلاب", "جميع الضيوف" }));
-        ComboChoose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboChooseActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("عرض إحصائيات الحضور والأنشطة");
-
-        jButton1.setText("عرض");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,54 +123,96 @@ public class Statestics extends javax.swing.JFrame {
 
         jLabel6.setText("مساوي لـ");
 
+        jButton1.setText("صفحة التحضير");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jComboBoxEvents.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        ComboChoose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "جميع أعضاء هيئة التدريس", "جميع موظفي الكلية", "جميع الطلاب", "جميع الضيوف" }));
+        ComboChoose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboChooseActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("للعرض المخصص");
+
+        jLabel7.setText("بحث عن شخص باستخدام:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "الرقم المعرف", "الأسم", "رقم النشاط", "ا" }));
+
+        jButton3.setText("بحث");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("إلغاء");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jLabel6)
-                .addGap(1, 1, 1)
-                .addComponent(value, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(selectedField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(149, 149, 149)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
+                                .addGap(52, 52, 52)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(ComboChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Choose, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(value, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(selectedField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel4))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addComponent(jButton1)
+                                .addGap(27, 27, 27)
+                                .addComponent(jButton2)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ComboChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jButton2)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(ComboShow, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(26, 26, 26)
-                                            .addComponent(jButton1))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(ChosenEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(chooseEvent))))))))
-                .addGap(6, 116, Short.MAX_VALUE))
+                                        .addComponent(jLabel2)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(ComboShow, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                                            .addComponent(jComboBoxEvents, javax.swing.GroupLayout.Alignment.LEADING, 0, 123, Short.MAX_VALUE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(326, 326, 326)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,34 +220,38 @@ public class Statestics extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ComboShow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(7, 7, 7)
+                        .addComponent(ComboShow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ChosenEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chooseEvent))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ComboChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Choose)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxEvents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ComboChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 56, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(selectedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -259,64 +269,13 @@ public class Statestics extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void ComboShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboShowActionPerformed
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_ComboShowActionPerformed
-
-    private void execute2(ArrayList<Event> item, int selectedNumber) {
-
-        //To show all events 
-        DefaultTableModel model = new DefaultTableModel();
-        String[] column = {"الوقت", "التاريخ ", "نوع النشاط ", " اسم النشاط", " رقم النشاط"};
-        int count = item.size();
-        model.setColumnIdentifiers(column);
-        for (int i = 0; i < count; i++) {
-
-            String name = item.get(i).getName();
-            String id = Integer.toString(item.get(i).getEventId());
-            String type = item.get(i).getType();
-            String date = item.get(i).getType();
-            String time = item.get(i).getType();
-            String[] row = {time, date, type, name, id};
-            model.addRow(row);
-
-        }
-
-        Table.setModel(model);//show selected Event in the textfield    
-
-    }
-
-    private void execute(ArrayList<User> item, int a) {
-
-        DefaultTableModel model = new DefaultTableModel();
-        String[] column = {"النوع", "القسم ", "الكلية", " الأسم", " الرقم المعرف"};
-        int count = item.size();
-        model.setColumnIdentifiers(column);
-        for (int i = 0; i < count; i++) {
-
-            String name = item.get(i).getName();
-            String id = Integer.toString(item.get(i).getId());
-            String college = item.get(i).getCollege();
-            String date = item.get(i).getType();
-            String time = item.get(i).getType();
-            String[] row = {time, date, college, name, id};
-            model.addRow(row);
-
-        }
-
-        Table.setModel(model);//show selected Event in the textfield
-
-    }
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
         String showFromCombo = ComboShow.getSelectedItem().toString();//To get selected item from عرض
@@ -380,83 +339,52 @@ public class Statestics extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }//GEN-LAST:event_ComboShowActionPerformed
 
+    private void execute2(ArrayList<Event> item, int selectedNumber) {
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+        //To show all events 
+        DefaultTableModel model = new DefaultTableModel();
+        String[] column = {"الوقت", "التاريخ ", "نوع النشاط ", " اسم النشاط", " رقم النشاط"};
+        int count = item.size();
+        model.setColumnIdentifiers(column);
+        for (int i = 0; i < count; i++) {
 
-    private void ChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChooseActionPerformed
-        // TODO add your handling code here:
-        int selected = ComboChoose.getSelectedIndex();
+            String name = item.get(i).getName();
+            String id = Integer.toString(item.get(i).getEventId());
+            String type = item.get(i).getType();
+            String date = item.get(i).getType();
+            String time = item.get(i).getType();
+            String[] row = {time, date, type, name, id};
+            model.addRow(row);
 
-        int count = 0;
-        ArrayList<User> item = null;
-        StatOperations stat = new StatOperations();
-        String event=ChosenEvent.getText();//to chose which event
-        int selectedNumber = 0;//to determine which case to show(students, professors,staffs)
-        //أعضاء هيئة التدريس
-        if (selected == 0) {
-            try {
-
-                //this method to getall professors in specific event
-                item = stat.selectAllProfessor2(event);
-                count = item.size();// to count total of professors
-                execute(item, selectedNumber);
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            count = item.size();// To count total number of events;
-            total.setText(Integer.toString(count));
-
-        } //موظفي الكلية
-        else if (selected == 1) {
-
-            try {
-                //this method to getall professors in specific event
-                item = stat.selectAllStaff2(event);
-            } catch (SQLException ex) {
-                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            execute(item, selectedNumber);
-
-            count = item.size();// To count total number of staff;
-            total.setText(Integer.toString(count));
-
-
-        } //الطلاب
-        else if (selected == 2) {
-
-              try {
-                //this method to getall professors in specific event
-                item = stat.selectAllStudents2(event);
-            } catch (SQLException ex) {
-                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            execute(item, selectedNumber);
-
-            count = item.size();// To count total number of staff;
-            total.setText(Integer.toString(count));
-        } //الضيوف
-        else if (selected == 3) {
-            
-              try {
-                //this method to getall professors in specific event
-                item = stat.selectAllGuests2(event);
-            } catch (SQLException ex) {
-                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            execute(item, selectedNumber);
-
-            count = item.size();// To count total number of staff;
-            total.setText(Integer.toString(count));
-            
         }
-        selectedField.setText(ComboChoose.getSelectedItem().toString());//fill the textfiled with event name
-        value.setText(ChosenEvent.getText());//fill the textfiled with event name
-    }//GEN-LAST:event_ChooseActionPerformed
+
+        Table.setModel(model);//show selected Event in the textfield    
+
+    }
+
+    private void execute(ArrayList<User> item, int a) {
+
+        DefaultTableModel model = new DefaultTableModel();
+        String[] column = {"النوع", "القسم ", "الكلية", " الأسم", " الرقم المعرف"};
+        int count = item.size();
+        model.setColumnIdentifiers(column);
+        for (int i = 0; i < count; i++) {
+
+            String name = item.get(i).getName();
+            String id = Integer.toString(item.get(i).getId());
+            String college = item.get(i).getCollege();
+            String date = item.get(i).getType();
+            String time = item.get(i).getType();
+            String[] row = {time, date, college, name, id};
+            model.addRow(row);
+
+        }
+
+        Table.setModel(model);//show selected Event in the textfield
+
+    }
 
     private void totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalActionPerformed
         // TODO add your handling code here:
@@ -468,36 +396,16 @@ public class Statestics extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Management mana = new Management();
+        MainPage mana = new MainPage();
         mana.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void valueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valueActionPerformed
         // TODO add your handling code here:
-        
 
 
     }//GEN-LAST:event_valueActionPerformed
-
-    private void chooseEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseEventActionPerformed
-        // TODO add your handling code here:
-        int column = 3;//represent event column in the table
-        int row = 0;
-
-        String value = Table.getModel().getValueAt(row, column).toString();//get selected event
-        if (value == "") {
-            System.out.println("please select an event");
-        } else {
-            row = Table.getSelectedRow();
-            value = Table.getModel().getValueAt(row, column).toString();//get selected event
-            ChosenEvent.setText(value);//show event name from the table
-        }
-    }//GEN-LAST:event_chooseEventActionPerformed
-
-    private void ChosenEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChosenEventActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_ChosenEventActionPerformed
 
     private void TableMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableMouseMoved
         // TODO add your handling code here:
@@ -521,7 +429,13 @@ public class Statestics extends javax.swing.JFrame {
         total.setText(Integer.toString(count2));
         int column = 3;//represent event column in the table
         int row = 0;
-        ChosenEvent.setText(Table.getModel().getValueAt(row, column).toString());//default value 
+        //---------------------------------------------------------------
+        // تعبئة اليست المخصصة لعرض النشاطات 
+        for (int i = 0; i < item2.size(); i++) {
+            jComboBoxEvents.addItem(item2.get(i).getName());
+           
+        }
+        //ChosenEvent.setText(Table.getModel().getValueAt(row, column).toString());//default value 
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -529,6 +443,22 @@ public class Statestics extends javax.swing.JFrame {
         // TODO add your handling code here:
         selectedField.setText(ComboChoose.getSelectedItem().toString());
     }//GEN-LAST:event_selectedFieldActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        search.setText("");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Search search = new Search();
+        search.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -566,22 +496,25 @@ public class Statestics extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Choose;
-    private javax.swing.JTextField ChosenEvent;
     private javax.swing.JComboBox<String> ComboChoose;
     private javax.swing.JComboBox<String> ComboShow;
     private javax.swing.JTable Table;
-    private javax.swing.JButton chooseEvent;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox jComboBoxEvents;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField search;
     private javax.swing.JTextField selectedField;
     private javax.swing.JTextField total;
     private javax.swing.JTextField value;

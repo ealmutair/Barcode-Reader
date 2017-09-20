@@ -428,11 +428,11 @@ public class NewEvent extends javax.swing.JFrame {
 
     private void ExistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExistActionPerformed
         // TODO add your handling code here:
-        Management management = new Management();
+       
         EventName.setText("");
         EventId.setText("");
         EventType.setText("");
-        management.setVisible(true);
+       
         setVisible(false);
        dispose();
         
