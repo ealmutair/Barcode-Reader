@@ -21,9 +21,9 @@ import java.util.logging.Logger;
 public class DatabaseOperation {
     
    public String driver="com.mysql.jdbc.Driver";
-     public String URL = "jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull";
+     public String URL = "jdbc:mysql://localhost:3306/barcode";
      public String username = "root";
-     public String password = "P@55w@rd";
+     public String password = "hkh2006";
      public Connection conn;
      
      DatabaseOperation(String URL,String username,String password){

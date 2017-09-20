@@ -308,13 +308,14 @@ public class Management extends javax.swing.JFrame {
         }
         try {
             //before mark anyone attend, try to show who we mark present
-            ArrayList<User>present=operation.showPresentUser(eventId);
+            ArrayList<User> present=operation.showPresentUser(eventId);
         } catch (SQLException ex) {
             Logger.getLogger(Management.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             System.out.print("before");
             //This method to insert user and event to eventUser table
+            System.out.println(selectedId+"     "+eventId);
             operation.insertSelectedUserToEvent(eventId, selectedId);
         } catch (SQLException ex) {
             Logger.getLogger(Management.class.getName()).log(Level.SEVERE, null, ex);
@@ -340,7 +341,7 @@ public class Management extends javax.swing.JFrame {
 
         }
         Table.setModel(model);//show selected Event in the textfield
-
+        
 
     }//GEN-LAST:event_AttendActionPerformed
 

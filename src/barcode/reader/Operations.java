@@ -96,7 +96,7 @@ public class Operations {
     // for delete Event after clicking delete Event
     public void deleteEvent(int id) throws SQLException {
         PreparedStatement pre;
-        String query = "Delete from Barcode.Event where eventId ='"+id+"'";//+id+"'";
+        String query = "Delete from Barcode.Event where eventId ="+id;//+id+"'";
         System.out.print("I am here one");
         dbOperation.connect();//connect to database  
         pre = dbOperation.prepareStatement(query);
@@ -116,7 +116,7 @@ public class Operations {
         pre = dbOperation.prepareStatement(query);// query that will be executed
         //pre.setString(1, "done");
 
-        ResultSet rs = pre.executeQuery(query);//get the result from database as an object
+        ResultSet rs = pre.executeQuery();//get the result from database as an object
 
         while (rs.next()) {
             int id = rs.getInt("eventId");
@@ -158,7 +158,7 @@ public class Operations {
             
             ResultSet rs;//get the result from database as an object
             
-            rs = pre.executeQuery(query);
+            rs = pre.executeQuery();
             
             while (rs.next()) {
             int id = rs.getInt("id");
@@ -186,7 +186,7 @@ public class Operations {
         dbOperation.connect();//connect to database       
         pre = dbOperation.prepareStatement(query);// query that will be executed
 
-        ResultSet rs = pre.executeQuery(query);//get the result from database as an object
+        ResultSet rs = pre.executeQuery();//get the result from database as an object
 
         while (rs.next()) {
             int id = rs.getInt("eventId");
@@ -244,13 +244,13 @@ public class Operations {
    public void insertSelectedUserToEvent(int eventId,int userId) throws SQLException{
        
        PreparedStatement pre;
-        String query = "INSERT INTO Barcode.eventUser VALUES(?,?)";
+        String query = "INSERT INTO barcode.eventuser VALUES(?,?)";
         dbOperation.connect();//connect to database  
         pre = dbOperation.prepareStatement(query);
         pre.setInt(1, eventId);
         pre.setInt(2, userId);
 
-       pre.executeQuery();
+       pre.execute();
        
         pre.close();
         System.out.print("insert");
@@ -260,11 +260,11 @@ public class Operations {
       PreparedStatement pre;
         //Event event= new Event();
         ArrayList<User> users = new ArrayList<User>();
-        String query="select * from  Barcode.view1 where  eventId='"+eventId+"'";
+        String query="select * from  Barcode.view1 where eventId=?";
         dbOperation.connect();//connect to database       
         pre = dbOperation.prepareStatement(query);// query that will be executed
-        
-        ResultSet rs = pre.executeQuery(query);//get the result from database as an object
+        pre.setInt(1, eventId);
+        ResultSet rs = pre.executeQuery();//get the result from database as an object
         
         while (rs.next()) {
             int id = rs.getInt("id");
