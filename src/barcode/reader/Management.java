@@ -26,7 +26,29 @@ public class Management extends javax.swing.JFrame {
     public Management() {
         initComponents();
     }
+    public void showTable(Operations operation,String temp, int selectedId)
+    {
+        DefaultTableModel model = new DefaultTableModel();
+        String[] column = {"القسم","الكلية ", "الوظيفة ", " الأسم", " الرقم المعرف"};
 
+        model.setColumnIdentifiers(column);
+
+        //This method to show all the attendence after user select specific event
+        ArrayList<User> item = operation.showSelectedEventAttendence(temp, selectedId);
+        
+        for (int i = 0; i < item.size(); i++) {
+
+            String name = item.get(i).getName();
+            String id = Integer.toString(item.get(i).getId());
+            String college = item.get(i).getType();
+            String type = item.get(i).getCollege();
+            String department =item.get(i).getDepartment();
+            String[] row = {department,college, type, name, id};
+            model.addRow(row);
+
+        }
+        Table.setModel(model);//show selected Event in the textfield
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -321,27 +343,8 @@ public class Management extends javax.swing.JFrame {
             Logger.getLogger(Management.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        DefaultTableModel model = new DefaultTableModel();
-        String[] column = {"القسم","الكلية ", "الوظيفة ", " الأسم", " الرقم المعرف"};
-
-        model.setColumnIdentifiers(column);
-
-        //This method to show all the attendence after user select specific event
-        ArrayList<User> item = operation.showSelectedEventAttendence(temp, selectedId);
         
-        for (int i = 0; i < item.size(); i++) {
-
-            String name = item.get(i).getName();
-            String id = Integer.toString(item.get(i).getId());
-            String college = item.get(i).getType();
-            String type = item.get(i).getCollege();
-            String department =item.get(i).getDepartment();
-            String[] row = {department,college, type, name, id};
-            model.addRow(row);
-
-        }
-        Table.setModel(model);//show selected Event in the textfield
-        
+        showTable(operation, temp, selectedId);
 
     }//GEN-LAST:event_AttendActionPerformed
 
