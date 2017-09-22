@@ -409,7 +409,7 @@ public class Management extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Management.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(Management.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         EventsList.setModel(dm);

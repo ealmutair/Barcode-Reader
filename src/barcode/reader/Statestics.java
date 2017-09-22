@@ -293,7 +293,13 @@ public class Statestics extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+  
+    //to disaple ComboBox
+    private void setDisaple(){
+      
+        jComboBoxEvents.setEnabled(false);
+                ComboChoose.setEnabled(false);
+    }
     private void ComboShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboShowActionPerformed
         // TODO add your handling code here:
 
@@ -319,14 +325,17 @@ public class Statestics extends javax.swing.JFrame {
                 int count2 = item2.size();
                 execute2(item2, selectedNumber);
                 total.setText(Integer.toString(count2));
+                jComboBoxEvents.setEnabled(true);
+                ComboChoose.setEnabled(true);
             } //الطلاب
             else if (a == 1) {
                 //this method to get all students
                 item = stat.selectAllStudents();
-
+                
                 int count = item.size();// To count total number of events;
                 execute(item);
                 total.setText(Integer.toString(count));
+                setDisaple();
             } //أعضاء هيئة التدريس
             else if (a == 2) {
 
@@ -336,6 +345,7 @@ public class Statestics extends javax.swing.JFrame {
                 int count = item.size();// To count total number of events;
                 execute(item);
                 total.setText(Integer.toString(count));
+                setDisaple();
             } //موظفي الكلية
             else if (a == 3) {
 
@@ -345,6 +355,7 @@ public class Statestics extends javax.swing.JFrame {
                 int count = item.size();// To count total number of events;
                 execute(item);
                 total.setText(Integer.toString(count));
+                setDisaple();
             } //الضيوف
             else if (a == 4) {
                 //this method to get all guests
@@ -353,6 +364,7 @@ public class Statestics extends javax.swing.JFrame {
                 int count = item.size();// To count total number of events;
                 execute(item);
                 total.setText(Integer.toString(count));
+                setDisaple();
             }
 
         } catch (SQLException ex) {
