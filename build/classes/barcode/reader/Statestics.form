@@ -103,7 +103,7 @@
                                           <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="search" min="-2" pref="119" max="-2" attributes="0"/>
-                                              <Component id="jComboBox1" min="-2" pref="118" max="-2" attributes="0"/>
+                                              <Component id="searchList" min="-2" pref="118" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -148,7 +148,7 @@
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                          <Component id="searchList" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="search" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="16" max="32767" attributes="0"/>
@@ -239,6 +239,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ComboShowMouseExited"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComboShowActionPerformed"/>
           </Events>
           <AuxValues>
@@ -271,14 +272,12 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxEvents">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxEventsActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="ComboChoose">
           <Properties>
@@ -308,17 +307,21 @@
             <Property name="text" type="java.lang.String" value="&#x628;&#x62d;&#x62b; &#x639;&#x646; &#x634;&#x62e;&#x635; &#x628;&#x627;&#x633;&#x62a;&#x62e;&#x62f;&#x627;&#x645;:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="searchList">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="&#x627;&#x644;&#x631;&#x642;&#x645; &#x627;&#x644;&#x645;&#x639;&#x631;&#x641;"/>
-                <StringItem index="1" value="&#x627;&#x644;&#x623;&#x633;&#x645;"/>
+                <StringItem index="0" value="&#x627;&#x644;&#x631;&#x642;&#x645; &#x627;&#x644;&#x645;&#x639;&#x631;&#x641; &#x644;&#x644;&#x634;&#x62e;&#x635;"/>
+                <StringItem index="1" value="&#x627;&#x644;&#x623;&#x633;&#x645; &#x627;&#x644;&#x634;&#x62e;&#x635;&#x64a; "/>
                 <StringItem index="2" value="&#x631;&#x642;&#x645; &#x627;&#x644;&#x646;&#x634;&#x627;&#x637;"/>
-                <StringItem index="3" value="&#x627;"/>
+                <StringItem index="3" value=" "/>
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchListMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchListActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>

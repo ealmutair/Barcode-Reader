@@ -23,7 +23,7 @@ public class DatabaseOperation {
    public String driver="com.mysql.jdbc.Driver";
      public String URL = "jdbc:mysql://localhost:3306/barcode";
      public String username = "root";
-     public String password = "hkh2006";
+     public String password = "P@55w@rd";
      public Connection conn;
      
      DatabaseOperation(String URL,String username,String password){

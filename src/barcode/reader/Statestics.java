@@ -51,7 +51,7 @@ public class Statestics extends javax.swing.JFrame {
         ComboChoose = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        searchList = new javax.swing.JComboBox<>();
         search = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -107,6 +107,11 @@ public class Statestics extends javax.swing.JFrame {
         jScrollPane1.setViewportView(Table);
 
         ComboShow.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " الأنشطة", " الطلاب", "أعضاء هيئة التدريس", " موظفي الكلية", "الضيوف" }));
+        ComboShow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ComboShowMouseExited(evt);
+            }
+        });
         ComboShow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboShowActionPerformed(evt);
@@ -130,7 +135,11 @@ public class Statestics extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxEvents.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEvents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEventsActionPerformed(evt);
+            }
+        });
 
         ComboChoose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "جميع أعضاء هيئة التدريس", "جميع موظفي الكلية", "جميع الطلاب", "جميع الضيوف" }));
         ComboChoose.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +152,17 @@ public class Statestics extends javax.swing.JFrame {
 
         jLabel7.setText("بحث عن شخص باستخدام:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "الرقم المعرف", "الأسم", "رقم النشاط", "ا" }));
+        searchList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "الرقم المعرف للشخص", "الأسم الشخصي ", "رقم النشاط", " " }));
+        searchList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchListMouseClicked(evt);
+            }
+        });
+        searchList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchListActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("بحث");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -203,7 +222,7 @@ public class Statestics extends javax.swing.JFrame {
                                         .addGap(6, 6, 6)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(searchList, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
                                 .addComponent(jButton4)
@@ -236,7 +255,7 @@ public class Statestics extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE))
@@ -306,7 +325,7 @@ public class Statestics extends javax.swing.JFrame {
                 item = stat.selectAllStudents();
 
                 int count = item.size();// To count total number of events;
-                execute(item, selectedNumber);
+                execute(item);
                 total.setText(Integer.toString(count));
             } //أعضاء هيئة التدريس
             else if (a == 2) {
@@ -315,7 +334,7 @@ public class Statestics extends javax.swing.JFrame {
                 item = stat.selectAllProfessor();
 
                 int count = item.size();// To count total number of events;
-                execute(item, selectedNumber);
+                execute(item);
                 total.setText(Integer.toString(count));
             } //موظفي الكلية
             else if (a == 3) {
@@ -324,7 +343,7 @@ public class Statestics extends javax.swing.JFrame {
                 item = stat.selectAllStaff();
 
                 int count = item.size();// To count total number of events;
-                execute(item, selectedNumber);
+                execute(item);
                 total.setText(Integer.toString(count));
             } //الضيوف
             else if (a == 4) {
@@ -332,7 +351,7 @@ public class Statestics extends javax.swing.JFrame {
                 item = stat.selectAllGuests();
 
                 int count = item.size();// To count total number of events;
-                execute(item, selectedNumber);
+                execute(item);
                 total.setText(Integer.toString(count));
             }
 
@@ -341,6 +360,7 @@ public class Statestics extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ComboShowActionPerformed
 
+    
     private void execute2(ArrayList<Event> item, int selectedNumber) {
 
         //To show all events 
@@ -364,7 +384,7 @@ public class Statestics extends javax.swing.JFrame {
 
     }
 
-    private void execute(ArrayList<User> item, int a) {
+    private void execute(ArrayList<User> item) {
 
         DefaultTableModel model = new DefaultTableModel();
         String[] column = {"النوع", "القسم ", "الكلية", " الأسم", " الرقم المعرف"};
@@ -391,7 +411,71 @@ public class Statestics extends javax.swing.JFrame {
     }//GEN-LAST:event_totalActionPerformed
 
     private void ComboChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboChooseActionPerformed
-        // TODO add your handling code here:
+        
+           // TODO add your handling code here:
+        //to get specifc thing that we want in specific event
+        int selectedOrder=ComboChoose.getSelectedIndex();
+          //To handle specific event attendence 
+        String selectedEvent=jComboBoxEvents.getSelectedItem().toString();
+        System.out.print("selected event is "+selectedEvent);
+        
+        ArrayList<User> item = null;
+         StatOperations stat= new StatOperations();
+        //الطلاب
+             if (selectedOrder == 2) {
+            try {
+                //this method to get all students in specific event
+                item = stat.selectAllStudentsAtEvent(selectedEvent);
+
+                int count = item.size();// To count total number of events;
+                execute(item);
+                total.setText(Integer.toString(count));
+            } //أعضاء هيئة التدريس
+            catch (SQLException ex) {
+                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            else if (selectedOrder == 0) {
+
+            try {
+                //this method to getall professors in specific event
+                item = stat.selectAllProfessorAtEvent(selectedEvent);
+
+                int count = item.size();// To count total number of events;
+                execute(item);
+                total.setText(Integer.toString(count));
+            } //موظفي الكلية
+            catch (SQLException ex) {
+                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            else if (selectedOrder == 1) {
+
+            try {
+                //This method to get all staff in specific event
+                item = stat.selectAllStaffAtEvent(selectedEvent);
+
+                int count = item.size();// To count total number of events;
+                execute(item);
+                total.setText(Integer.toString(count));
+            } //الضيوف
+            catch (SQLException ex) {
+                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            else if (selectedOrder == 3) {
+            try {
+                //this method to get all guests in specific event
+                item = stat.selectAllGuestsAtEvent(selectedEvent);
+
+                int count = item.size();// To count total number of events;
+                execute(item);
+                total.setText(Integer.toString(count));
+            } catch (SQLException ex) {
+                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+             selectedField.setText(ComboChoose.getSelectedItem().toString());
     }//GEN-LAST:event_ComboChooseActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -456,9 +540,171 @@ public class Statestics extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Search search = new Search();
+        Search sear =new Search();
+        
+        ArrayList<User> item = null;
+        ArrayList<Event>item2=null;
+         StatOperations stat= new StatOperations();
+        //numbers represent the order
+        int selectedNumber =searchList.getSelectedIndex();
+        //for search by id number
+        if (selectedNumber==0){
+            try {
+                int searchField=Integer.parseInt(search.getText());
+                
+                item =stat.selectAllUsersAsId(searchField);
+                int count = item.size();// To count total number of events;
+                sear.setVisible(true);
+                sear.display(item);
+                execute(item);
+                total.setText(Integer.toString(count));
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        //for search by user name
+        else if(selectedNumber==1){
+            try {
+                String searchField=search.getText();
+                
+                item =stat.selectAllUsersAsName(searchField);
+                int count = item.size();// To count total number of events;
+                execute(item);
+                sear.setVisible(true);
+                sear.display(item);
+                total.setText(Integer.toString(count));
+                //To search 
+            } catch (SQLException ex) {
+                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        //for search by eventId
+        else if(selectedNumber==2){
+            try {
+                int searchField=Integer.parseInt(search.getText());
+                item2=stat.selectAllEventsAsId(searchField);
+                sear.setVisible(true);
+                sear.display2(item2);//To search 
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        
+        //to get specifc thing that we want in specific event
+        int selectedOrder=ComboChoose.getSelectedIndex();
+          //To handle specific event attendence 
+        String selectedEvent=jComboBoxEvents.getSelectedItem().toString();
+        
+        
+        
+        //الطلاب
+             if (selectedOrder == 2) {
+            try {
+                //this method to get all students in specific event
+                item = stat.selectAllStudentsAtEvent(selectedEvent);
+               
+                int count = item.size();// To count total number of events;
+                execute(item);
+                total.setText(Integer.toString(count));
+            } //أعضاء هيئة التدريس
+            catch (SQLException ex) {
+                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            else if (selectedOrder == 0) {
+
+            try {
+                //this method to getall professors in specific event
+                item = stat.selectAllProfessorAtEvent(selectedEvent);
+
+                int count = item.size();// To count total number of events;
+                execute(item);
+                total.setText(Integer.toString(count));
+            } //موظفي الكلية
+            catch (SQLException ex) {
+                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            else if (selectedOrder == 1) {
+
+            try {
+                //This method to get all staff in specific event
+                item = stat.selectAllStaffAtEvent(selectedEvent);
+
+                int count = item.size();// To count total number of events;
+                execute(item);
+                total.setText(Integer.toString(count));
+            } //الضيوف
+            catch (SQLException ex) {
+                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            else if (selectedOrder == 3) {
+            try {
+                //this method to get all guests in specific event
+                item = stat.selectAllGuestsAtEvent(selectedEvent);
+
+                int count = item.size();// To count total number of events;
+                execute(item);
+                total.setText(Integer.toString(count));
+            } catch (SQLException ex) {
+                Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+             selectedField.setText(ComboChoose.getSelectedItem().toString());
         search.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBoxEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEventsActionPerformed
+        // TODO add your handling code here:
+        //To handle specific event attendence 
+        String selectedEvent=jComboBoxEvents.getSelectedItem().toString();
+        
+        StatOperations operation = new StatOperations();
+        try {
+            int id=operation.getEventId(selectedEvent);
+            // TODO add your handling code here:
+        //make field empty after selecting specific event
+        selectedField.setText("");
+        //fill a filed after selecting specific event
+        value.setText(jComboBoxEvents.getSelectedItem().toString());
+        } catch (SQLException ex) {
+            Logger.getLogger(Statestics.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       // value.setText(selectedEvent);
+        selectedField.setText("");
+    }//GEN-LAST:event_jComboBoxEventsActionPerformed
+
+    private void ComboShowMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboShowMouseExited
+        // TODO add your handling code here:
+        
+        value.setText("");//to make event fiedl empty when show all event
+    }//GEN-LAST:event_ComboShowMouseExited
+    // This method to determine the way of search 
+    private void searchListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchListMouseClicked
+        // TODO add your handling code here:
+        //numbers represent the order
+        int selectedNumber =searchList.getSelectedIndex();
+        //for search by id number
+        if (selectedNumber==0){
+            int searchField=Integer.parseInt(search.getText());
+        }
+        //for search by name
+        else if(selectedNumber==1){
+            String searchField=search.getText();
+        }
+        //for search by eventId
+        else if(selectedNumber==2){
+            int searchField=Integer.parseInt(search.getText());
+        }
+    }//GEN-LAST:event_searchListMouseClicked
+
+    private void searchListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -503,7 +749,6 @@ public class Statestics extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox jComboBoxEvents;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -515,6 +760,7 @@ public class Statestics extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField search;
+    private javax.swing.JComboBox<String> searchList;
     private javax.swing.JTextField selectedField;
     private javax.swing.JTextField total;
     private javax.swing.JTextField value;

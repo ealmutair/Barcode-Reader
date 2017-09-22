@@ -5,6 +5,9 @@
  */
 package barcode.reader;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author EssamAlmutair
@@ -18,6 +21,8 @@ public class Search extends javax.swing.JFrame {
         initComponents();
     }
 
+   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +35,7 @@ public class Search extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Table1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,7 +47,7 @@ public class Search extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,7 +58,7 @@ public class Search extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Table1);
 
         jLabel1.setText("معلومات عامة خاصة بالبحث");
 
@@ -147,10 +152,57 @@ public class Search extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Table1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    public void display(ArrayList<User> item) {
+      
+         DefaultTableModel model = new DefaultTableModel();
+        String[] column = {"النوع", "القسم ", "الكلية", " الأسم", " الرقم المعرف"};
+        int count = item.size();
+        model.setColumnIdentifiers(column);
+        for (int i = 0; i < count; i++) {
+
+            String name = item.get(i).getName();
+            String id = Integer.toString(item.get(i).getId());
+            String college = item.get(i).getCollege();
+            String date = item.get(i).getType();
+            String time = item.get(i).getType();
+            String[] row = {time, date, college, name, id};
+            model.addRow(row);
+
+        }
+
+        Table1.setModel(model);//show selected Event in the textfield
+
+        
+    }
+
+    public void display2(ArrayList<Event> item2) {
+       
+        //To show all events 
+        DefaultTableModel model = new DefaultTableModel();
+        String[] column = {"الوقت", "التاريخ ", "نوع النشاط ", " اسم النشاط", " رقم النشاط"};
+        int count = item2.size();
+        model.setColumnIdentifiers(column);
+        for (int i = 0; i < count; i++) {
+
+            String name = item2.get(i).getName();
+            String id = Integer.toString(item2.get(i).getEventId());
+            String type = item2.get(i).getType();
+            String date = item2.get(i).getType();
+            String time = item2.get(i).getType();
+            String[] row = {time, date, type, name, id};
+            model.addRow(row);
+
+        }
+
+        Table1.setModel(model);//show selected Event in the textfield    
+
+        
+    }
 }
