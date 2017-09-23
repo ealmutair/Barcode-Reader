@@ -36,9 +36,9 @@ public class Operations {
 
     }
 
-    public void addUser(int id, String name, String college, String type) throws SQLException {
+    public void addUser(int id, String name, String college,String department, String type) throws SQLException {
         PreparedStatement pre;
-        String query = " INSERT INTO Barcode.User(id,name,college,type) VALUES(?,?,?,?)";
+        String query = " INSERT INTO Barcode.User(id,name,college,department,type) VALUES(?,?,?,?,?)";
         dbOperation.connect();//connect to database       
         pre = dbOperation.prepareStatement(query);// query that will be executed 
         System.out.println(id + name + college + type);
@@ -46,7 +46,8 @@ public class Operations {
         pre.setInt(1, id);
         pre.setString(2, name);
         pre.setString(3, college);
-        pre.setString(4, type);
+        pre.setString(4, department);
+        pre.setString(5, type);
         pre.executeUpdate();
         pre.close();
     }//end of method
@@ -281,5 +282,42 @@ public class Operations {
 
         return users;  
     }
+   //This method to check wheather the id is used or not 
+   public boolean checkId(int Id) throws SQLException {
+       boolean value;
+       
+       PreparedStatement pre;
+        //Event event= new Event();
+        ArrayList<User> users = new ArrayList<User>();
+        String query="select id from  Barcode.User where id=?";
+        dbOperation.connect();//connect to database       
+        pre = dbOperation.prepareStatement(query);// query that will be executed
+        pre.setInt(1, Id);
+        ResultSet rs = pre.executeQuery();//get the result from database as an object
+        
+         value =rs.first();
+      
 
+    return value;
+   }
+
+   public  boolean checkEventId(int eventId) throws SQLException {
+     
+       boolean value;
+       
+       PreparedStatement pre;
+        //Event event= new Event();
+        ArrayList<User> users = new ArrayList<User>();
+        String query="select eventId from  Barcode.Event where eventId=?";
+        dbOperation.connect();//connect to database       
+        pre = dbOperation.prepareStatement(query);// query that will be executed
+        pre.setInt(1, eventId);
+        ResultSet rs = pre.executeQuery();//get the result from database as an object
+        
+         value =rs.first();
+      
+
+    return value;
+       
+    }
 }

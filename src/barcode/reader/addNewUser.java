@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,8 +17,8 @@ import java.util.logging.Logger;
  */
 public class addNewUser extends javax.swing.JFrame {
 
-    
-     Operations op = new Operations();
+    Operations op = new Operations();
+
     /**
      * Creates new form addNewUser
      */
@@ -25,7 +26,7 @@ public class addNewUser extends javax.swing.JFrame {
         initComponents();
     }
 // we have to add major
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,7 +51,7 @@ public class addNewUser extends javax.swing.JFrame {
         id = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        department = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +87,11 @@ public class addNewUser extends javax.swing.JFrame {
         });
 
         name.setText("jTextField1");
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
 
         type.setBackground(new java.awt.Color(204, 204, 204));
         type.setText("تعبئة تلقائية");
@@ -99,6 +105,11 @@ public class addNewUser extends javax.swing.JFrame {
         college.setText("jTextField1");
 
         id.setText("jTextField1");
+        id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("اختر");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +120,7 @@ public class addNewUser extends javax.swing.JFrame {
 
         jLabel6.setText("القسم");
 
-        jTextField1.setText("jTextField1");
+        department.setText("jTextField1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,7 +159,7 @@ public class addNewUser extends javax.swing.JFrame {
                                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(jTextField1)))
+                                        .addComponent(department)))
                                 .addGap(33, 33, 33)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +196,7 @@ public class addNewUser extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(department, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add)
@@ -214,8 +225,8 @@ public class addNewUser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
-       
-        
+
+
     }//GEN-LAST:event_typeActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
@@ -224,66 +235,81 @@ public class addNewUser extends javax.swing.JFrame {
         name.setText("");
         college.setText("");
         id.setText("");
+        department.setText("");
         dispose();
-        
+
     }//GEN-LAST:event_clearActionPerformed
 
-    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-
-   
-        try {
-
-            //getting data from textField
-           
-           int ID=Integer.parseInt(id.getText());
-           String Name=name.getText();
-           String College = college.getText();
-           //int SchoolId=Integer.parseInt(id.getText());
-           String Type=type.getText();
-           //end
-
-          //method to add new user into table User from Operation class
-           op.addUser(ID,Name, College, Type);
-           
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(addNewUser.class.getName()).log(Level.SEVERE, null, ex);
+    private void validationMessages(int a) {
+        switch (a) {
+            case 1:
+                JOptionPane.showMessageDialog(null, "الرقم المدخل مستخدم مسبقا الرجاء استخدام رقم آخر");
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, "الرجاء إدخال قيمة رقمية في الخانة المخصصة للرقم المعرف");
+                break;
         }
+    }
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+        int ID = 0;
+        //check if id is not empty
+        if (id.getText().isEmpty()) {
+            validationMessages(2);
+        } else {
+        //get the value of the entered Id
+            ID = Integer.parseInt(id.getText());
         
         
+            Operations operation = new Operations();
+
+        //Check if the id is reserved
+        boolean b;
+        try {
+            b = operation.checkId(ID);
+            if (b == true) {
+                validationMessages(1);
+            } else {
+
+                //getting data from textField
+                String Name = name.getText();
+                String College = college.getText();
+                //int SchoolId=Integer.parseInt(id.getText());
+                String Type = type.getText();
+                String Department = department.getText();
+                //end
+
+                //method to add new user into table User from Operation class
+                op.addUser(ID, Name, College, Department, Type);
+
+            }
+        }   catch (SQLException ex) {
+                Logger.getLogger(addNewUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
+        } 
     }//GEN-LAST:event_addActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         //to show selected value in the text field
-        String text=Combo.getSelectedItem().toString();
+        //to show selected value in the text field
+        String text = Combo.getSelectedItem().toString();
         type.setText(text);
-        
-        int selected = Combo.getSelectedIndex();
-    
+        //int selected = Combo.getSelectedIndex();
 
-           //طلاب
-                if(selected==0){//
-
-                }
-                //عضو هيئة تدريس
-                else if(selected==1){
-
-                }
-                //موظف
-                else if(selected==2){
-                    
-                }
-                //الضيوف
-                else if(selected==3){
-                
-                }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboActionPerformed
+
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_idActionPerformed
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,6 +351,7 @@ public class addNewUser extends javax.swing.JFrame {
     private javax.swing.JButton add;
     private javax.swing.JButton clear;
     private javax.swing.JTextField college;
+    private javax.swing.JTextField department;
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -334,7 +361,6 @@ public class addNewUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField name;
     private javax.swing.JTextField type;
     // End of variables declaration//GEN-END:variables

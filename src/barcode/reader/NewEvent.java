@@ -5,6 +5,8 @@
  */
 package barcode.reader;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.time;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -439,29 +441,50 @@ public class NewEvent extends javax.swing.JFrame {
        
     }//GEN-LAST:event_ExistActionPerformed
 
+        private void validationMessages(int a) {
+        switch (a) {
+            case 1:
+                JOptionPane.showMessageDialog(null, "الرقم المدخل مستخدم مسبقا الرجاء استخدام رقم آخر");
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, "الرجاء إدخال قيمة رقمية في الخانة المخصصة للرقم المعرف");
+                break;
+        }
+    }
+    
     private void AddEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddEventActionPerformed
-        //get data from textField
-            int ID = Integer.parseInt(EventId.getText());//for the Event ID
+
+        int ID = 0;
+        //check if id is not empty
+        if (EventId.getText().isEmpty()) {
+            validationMessages(2);
             
-            String title =EventName.getText();
+        } else {
+        //get the value of the entered Id
+            ID = Integer.parseInt(EventId.getText());
+     
+               Operations operation = new Operations();
+        //Check if the id is reserved
+        boolean b;
+        try {
+            b = operation.checkEventId(ID);
+            if (b == true) {
+                validationMessages(1);
+            } else{
+            //get data from textField
+            String name =EventName.getText();
             String type = EventType.getText();
             String date= EventDate.getText();
             String time=EventTime.getText();
             
-
-           try {
-               //call this method to add Evnet into table(Event)
-              // boolean temp =op.checkId(ID);
-               //if (temp== true){
-             op.addEvent(ID,title,type,date,time);
-               //}else{
-                 //  JOptionPane.showMessageDialog(new JFrame(), "رقم النشاط المدخل قد تم إستخدامه سابقا الرجاء إدخال رقم آخر", "Dialog",
-                   //   JOptionPane.ERROR_MESSAGE);
-               //}
-            } catch (SQLException ex) {
+            operation.addEvent(ID,name,type,date,time);
+            management.setVisible(true);
+            }
+        }   catch (SQLException ex) {
                 Logger.getLogger(NewEvent.class.getName()).log(Level.SEVERE, null, ex);
-           }
-        management.setVisible(true);
+            } 
+            }
+        
         
     }//GEN-LAST:event_AddEventActionPerformed
 

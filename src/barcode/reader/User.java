@@ -13,7 +13,7 @@ package barcode.reader;
 
 //represent User table in Database
 class User {
- 
+    
     private int id;
     private String name;
     private String college;
@@ -27,11 +27,11 @@ class User {
         this.department=department;
         this.type=type;
     }
-
+    
     public int getId() {
         return id;
     }
-
+    
     public void setId(int id) {
         this.id = id;
     }
