@@ -533,7 +533,7 @@ public class StatOperations {
         pre.setString(2, text0);
         pre.setString(3, text1);
         pre.setString(4, text2); 
-        ResultSet rs = pre.executeQuery();//get the result from database as an object
+        pre.execute();//get the result from database as an object
 
        
         pre.close();
@@ -544,13 +544,13 @@ public class StatOperations {
     
            PreparedStatement pre;
         ArrayList<User> users = new ArrayList<User>();
-        String query = "DELETE from Barcode.User where id=? and text=?";
+        String query = "DELETE from Barcode.User where id=? and name=?";
 
         dbOperation.connect();//connect to database       
         pre = dbOperation.prepareStatement(query);// query that will be executed
         pre.setInt(1, parseInt);       
         pre.setString(2, text);
-        ResultSet rs = pre.executeQuery();//get the result from database as an object       
+        pre.execute();//get the result from database as an object       
         pre.close();
         
     }
@@ -569,8 +569,7 @@ public class StatOperations {
         pre.setString(4, text1);
         pre.setString(5, text2);
         pre.setString(6, text3);        
-         pre.executeQuery();//get the result from database as an object
-
+        pre.execute();//get the result from database as an object
        
         pre.close();
         
@@ -586,11 +585,9 @@ public class StatOperations {
         pre = dbOperation.prepareStatement(query);// query that will be executed
         pre.setInt(1, parseInt);
         pre.setString(2, text);       
-         pre.executeQuery();//get the result from database as an object       
+        pre.execute();//get the result from database as an object       
         pre.close();
        
     }
     
 }
-
-

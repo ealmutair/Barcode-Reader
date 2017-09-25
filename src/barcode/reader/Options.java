@@ -281,7 +281,7 @@ public class Options extends javax.swing.JFrame {
             if(selected==0){
                 
                 try {
-                    operation.updateUser(Integer.parseInt(search.getText()),Text1.getText(),Text2.getText(),Text3.getText(),Text4.getText());
+                    operation.updateUser(Integer.parseInt(searchText.getText()),Text1.getText(),Text2.getText(),Text3.getText(),Text4.getText());
                 } catch (SQLException ex) {
                     Logger.getLogger(Options.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -289,7 +289,7 @@ public class Options extends javax.swing.JFrame {
             }
             else if(selected==1){
                 try {
-                    operation.updateEvent(Integer.parseInt(search.getText()),Text1.getText(),Text2.getText(),Text3.getText(),Text4.getText(),Text5.getText());
+                    operation.updateEvent(Integer.parseInt(searchText.getText()),Text1.getText(),Text2.getText(),Text3.getText(),Text4.getText(),Text5.getText());
                 } catch (SQLException ex) {
                     Logger.getLogger(Options.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -307,8 +307,10 @@ public class Options extends javax.swing.JFrame {
             StatOperations operation = new StatOperations();
             if(selected==0){
                 try {
-                    int x=Integer.parseInt(search.getText());
+                    int x=Integer.parseInt(searchText.getText());
+                    System.out.print(x);
                     String text=Text1.getText();
+                    System.out.print(text);
                     operation.deleteUser(x,text);
                 } catch (SQLException ex) {
                     Logger.getLogger(Options.class.getName()).log(Level.SEVERE, null, ex);
@@ -316,7 +318,7 @@ public class Options extends javax.swing.JFrame {
             }
             else if(selected==1){
                 try {
-                    operation.deleteEvent(Integer.parseInt(search.getText()),Text1.getText());
+                    operation.deleteEvent(Integer.parseInt(searchText.getText()),Text1.getText());
                 } catch (SQLException ex) {
                     Logger.getLogger(Options.class.getName()).log(Level.SEVERE, null, ex);
                 }
