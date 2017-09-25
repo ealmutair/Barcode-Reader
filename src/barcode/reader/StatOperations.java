@@ -452,7 +452,62 @@ public class StatOperations {
             int id = rs.getInt("eventId");
            
             String name = rs.getString("name");
-             System.out.println("event name is "+name);
+            String status = rs.getString("status");
+            String date = rs.getString("date");
+            String type = rs.getString("type");
+            String time=rs.getString("time");
+            Event event= new Event(id,name,type,status,date,time);
+            
+            events.add(event);
+        }//end of loop
+        pre.close();
+        return events;   
+        
+    }
+
+    ArrayList<User> getPerson(int text) throws SQLException {
+       
+           PreparedStatement pre;
+        ArrayList<User> users = new ArrayList<User>();
+        String query = "SELECT * from Barcode.User where id=?";
+
+        dbOperation.connect();//connect to database       
+        pre = dbOperation.prepareStatement(query);// query that will be executed
+        pre.setInt(1, text);
+       
+        ResultSet rs = pre.executeQuery();//get the result from database as an object
+
+        while (rs.next()) {//read data from database and safe them in array of objects
+            int id = rs.getInt("id");
+            System.out.println("Id of the name is"+id);
+            String name = rs.getString("name");
+            String college = rs.getString("college");
+            String department = rs.getString("department");
+            String type = rs.getString("type");
+            User user = new User(id, name, college, department, type);
+            users.add(user);
+        }//end of loop
+        pre.close();
+        return users;   
+        
+    }
+
+    ArrayList<Event> getEvent(int text) throws SQLException {
+
+            PreparedStatement pre;
+        ArrayList<Event> events = new ArrayList<Event>();
+        String query = "SELECT * from Barcode.Event where eventId=?";
+
+        dbOperation.connect();//connect to database       
+        pre = dbOperation.prepareStatement(query);// query that will be executed
+        pre.setInt(1, text);
+       
+        ResultSet rs = pre.executeQuery();//get the result from database as an object
+
+        while (rs.next()) {//read data from database and safe them in array of objects
+            int id = rs.getInt("eventId");
+           
+            String name = rs.getString("name");
             String status = rs.getString("status");
             String date = rs.getString("date");
             String type = rs.getString("type");
@@ -463,9 +518,79 @@ public class StatOperations {
             events.add(event);
         }//end of loop
         pre.close();
-        return events;   
+        return events;
+    }
+    //this method to update the User's Values
+    void updateUser(int parseInt, String text, String text0, String text1, String text2) throws SQLException {
+         PreparedStatement pre;
+        ArrayList<User> users = new ArrayList<User>();
+        String query = "UPDATE Barcode.User SET name=?,college=?,department=?,type=? where id=?";
+
+        dbOperation.connect();//connect to database       
+        pre = dbOperation.prepareStatement(query);// query that will be executed
+        pre.setInt(5, parseInt);
+        pre.setString(1, text);
+        pre.setString(2, text0);
+        pre.setString(3, text1);
+        pre.setString(4, text2); 
+        ResultSet rs = pre.executeQuery();//get the result from database as an object
+
+       
+        pre.close();
         
     }
+    // this method to delete a User
+    void deleteUser(int parseInt, String text) throws SQLException {
+    
+           PreparedStatement pre;
+        ArrayList<User> users = new ArrayList<User>();
+        String query = "DELETE from Barcode.User where id=? and text=?";
+
+        dbOperation.connect();//connect to database       
+        pre = dbOperation.prepareStatement(query);// query that will be executed
+        pre.setInt(1, parseInt);       
+        pre.setString(2, text);
+        ResultSet rs = pre.executeQuery();//get the result from database as an object       
+        pre.close();
+        
     }
+    //this method to update the Event's Values
+    void updateEvent(int parseInt, String text, String text0, String text1, String text2, String text3) throws SQLException {
+    
+           PreparedStatement pre;
+        ArrayList<Event> events = new ArrayList<Event>();
+        String query = "UPDATE Barcode.Event SET name =? ,type=?,status=?,date=?,time =? where eventId=?";
+
+        dbOperation.connect();//connect to database       
+        pre = dbOperation.prepareStatement(query);// query that will be executed
+        pre.setInt(1, parseInt);
+        pre.setString(2, text);
+        pre.setString(3, text0);
+        pre.setString(4, text1);
+        pre.setString(5, text2);
+        pre.setString(6, text3);        
+         pre.executeQuery();//get the result from database as an object
+
+       
+        pre.close();
+        
+    }
+        //this method to delete an Event
+    void deleteEvent(int parseInt, String text) throws SQLException {
+    
+           PreparedStatement pre;
+        ArrayList<Event> events = new ArrayList<Event>();
+        String query = "DELETE from Barcode.Event where eventId=?";
+
+        dbOperation.connect();//connect to database       
+        pre = dbOperation.prepareStatement(query);// query that will be executed
+        pre.setInt(1, parseInt);
+        pre.setString(2, text);       
+         pre.executeQuery();//get the result from database as an object       
+        pre.close();
+       
+    }
+    
+}
 
 

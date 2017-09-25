@@ -72,28 +72,6 @@ public class Operations {
 
     }//end of method
 
-    //this method to check if the ensert id is exist or not 
-    /*
-    public boolean checkId(int id) throws SQLException{
-         PreparedStatement pre;
-        String temp ="SELECT eventId FROM Barcode.event";
-        pre = dbOperation.prepareStatement(temp);
-
-        ResultSet rs = pre.executeQuery();
-        boolean val = true;   
-        while(rs.next()){
-
-                int idtemp = rs.getInt("eventId");
-
-                if(idtemp != id){
-                    val= true;
-                }else {
-                    val=false;
-                }
-            }
-        return val;
-    }
-     */
     // for delete Event after clicking delete Event
     public void deleteEvent(int id) throws SQLException {
         PreparedStatement pre;
